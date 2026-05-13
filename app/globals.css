@@ -45,10 +45,10 @@
   --color-accent-92: #1F3658;
 
   /* § Typography */
-  --font-serif:       "Noto Serif TC", "Source Han Serif TC", "PingFang TC", "Songti TC", "Times New Roman", serif;
+  --font-serif:       "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Helvetica Neue", system-ui, sans-serif;
   --font-sans:        "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Helvetica Neue", system-ui, sans-serif;
-  --font-mono:        "JetBrains Mono", "IBM Plex Mono", "Courier New", monospace;
-  --font-latin-serif: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  --font-mono:        "Courier New", monospace;
+  --font-latin-serif: "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Helvetica Neue", system-ui, sans-serif;
 
   /* § Layout */
   --width-col:  72rem;
