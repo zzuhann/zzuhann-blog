@@ -5,6 +5,7 @@ import {
   EB_Garamond,
   JetBrains_Mono,
 } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 const notoSerifTC = Noto_Serif_TC({
@@ -58,6 +59,9 @@ export default function RootLayout({
       className={`${notoSerifTC.variable} ${notoSansTC.variable} ${ebGaramond.variable} ${jetbrainsMono.variable}`}
     >
       <body>{children}</body>
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   )
 }
