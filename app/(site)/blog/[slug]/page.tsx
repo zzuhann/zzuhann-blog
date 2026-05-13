@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt ?? undefined,
       type: 'article',
       publishedTime: post.publishedAt,
+      images: [{ url: '/images/og-banner.png', width: 1200, height: 630 }],
     },
   }
 }
