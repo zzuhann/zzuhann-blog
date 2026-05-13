@@ -7,7 +7,7 @@ import ProjectCard from '@/components/projects/ProjectCard'
 
 export const metadata: Metadata = {
   title: '專案',
-  description: '選錄的個人專案。',
+  description: '一些碎片、一些專案、一些想做的事，綜合起來成了作品集、拼湊成我自己的樣子。',
 }
 
 export default async function ProjectsPage() {
@@ -17,9 +17,9 @@ export default async function ProjectsPage() {
     <main id="main-content" tabIndex={-1}>
       <div className="wrap">
         <PageHead
-          kicker={`SELECTED WORKS · 2022—${new Date().getFullYear()}`}
-          title={<>專案<em style={{ fontFamily: 'var(--font-latin-serif)', fontStyle: 'italic', color: 'var(--accent)', fontWeight: 400 }}>selected</em></>}
-          lede="選錄的個人專案。有些還在持續開發，有些已經封存。它們的共通之處：都是為了某個我自己也想要的東西做出來的。"
+          kicker='SELECTED WORKS'
+          title="專案"
+          lede="一些碎片、一些專案、一些想做的事，綜合起來成了作品集、拼湊成我自己的樣子。"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
