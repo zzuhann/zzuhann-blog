@@ -51,11 +51,6 @@ export const postType = defineType({
       options: {
         list: [
           { title: '技術筆記', value: '技術筆記' },
-          { title: '設計系統', value: '設計系統' },
-          { title: '排版', value: '排版' },
-          { title: '工程隨筆', value: '工程隨筆' },
-          { title: '週末實驗', value: '週末實驗' },
-          { title: '雜記', value: '雜記' },
         ],
       },
     }),
