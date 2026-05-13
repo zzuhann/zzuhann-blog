@@ -47,25 +47,6 @@ export const aboutType = defineType({
       ],
     }),
     defineField({
-      name: 'values',
-      title: '工作裡在意的事',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          name: 'valueItem',
-          fields: [
-            defineField({ name: 'num', title: '編號（i. ii. iii.）', type: 'string' }),
-            defineField({ name: 'title', title: '標題', type: 'string' }),
-            defineField({ name: 'desc', title: '說明', type: 'text', rows: 3 }),
-          ],
-          preview: {
-            select: { title: 'title' },
-          },
-        },
-      ],
-    }),
-    defineField({
       name: 'collaboration',
       title: '合作說明',
       type: 'array',

@@ -10,8 +10,8 @@ const NAV = [
 export default function Footer() {
   return (
     <footer
-      className="border-t border-border mt-[120px] py-14"
-      style={{ background: 'var(--bg-soft)' }}
+      className="border-t border-border pb-14"
+      style={{ background: 'var(--bg-soft)', paddingTop: 'calc(56px + 120px)' }}
     >
       <div className="wrap">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">

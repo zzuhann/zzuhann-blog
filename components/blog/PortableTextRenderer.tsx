@@ -32,7 +32,12 @@ const components = {
       const target = value?.blank ? '_blank' : undefined
       const rel = value?.blank ? 'noopener noreferrer' : undefined
       return (
-        <a href={value?.href} target={target} rel={rel}>
+        <a
+          href={value?.href}
+          target={target}
+          rel={rel}
+          style={{ color: 'var(--accent)', borderBottom: '1px solid currentColor' }}
+        >
           {children}
         </a>
       )
