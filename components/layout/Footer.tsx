@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer
       className="border-t border-border pb-14"
-      style={{ background: 'var(--bg-soft)', paddingTop: 'calc(56px + 120px)' }}
+      style={{ background: 'var(--bg-soft)', paddingTop: '56px' }}
     >
       <div className="wrap">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">

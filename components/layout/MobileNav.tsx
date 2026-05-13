@@ -28,7 +28,7 @@ export default function MobileNav({ nav }: { nav: NavItem[] }) {
 
       {open && (
         <div
-          className="absolute top-full left-0 right-0 border-b border-border"
+          className="animate-slide-down absolute top-full left-0 right-0 border-b border-border"
           style={{ background: 'rgba(247,243,238,.96)', backdropFilter: 'blur(8px)' }}
         >
           <nav className="flex flex-col py-4">

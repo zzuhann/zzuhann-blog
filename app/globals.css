@@ -45,6 +45,14 @@
   --color-accent-85: #2F4D78;
   --color-accent-92: #1F3658;
 
+  /* § Animations */
+  --animate-slide-down: slide-down 180ms ease-out;
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   /* § Typography */
   --font-serif:       "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Helvetica Neue", system-ui, sans-serif;
   --font-sans:        "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Helvetica Neue", system-ui, sans-serif;
