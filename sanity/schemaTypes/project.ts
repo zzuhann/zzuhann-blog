@@ -7,14 +7,9 @@ export const projectType = defineType({
   fields: [
     defineField({
       name: 'name',
-      title: '英文名稱',
+      title: '名稱',
       type: 'string',
       validation: Rule => Rule.required(),
-    }),
-    defineField({
-      name: 'nameZh',
-      title: '中文名稱',
-      type: 'string',
     }),
     defineField({
       name: 'slug',
@@ -35,18 +30,10 @@ export const projectType = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'status',
-      title: '狀態',
-      type: 'string',
-      options: {
-        list: [
-          { title: '進行中', value: '進行中' },
-          { title: '已發佈', value: '已發佈' },
-          { title: '公開測試', value: '公開測試' },
-          { title: '封存', value: '封存' },
-        ],
-        layout: 'radio',
-      },
+      name: 'coverImage',
+      title: '封面圖片',
+      type: 'image',
+      options: { hotspot: true },
     }),
     defineField({
       name: 'desc',
@@ -55,27 +42,20 @@ export const projectType = defineType({
       rows: 2,
     }),
     defineField({
-      name: 'overview',
-      title: '完整說明',
-      type: 'text',
-      rows: 5,
-    }),
-    defineField({
       name: 'stack',
       title: '技術堆疊',
       type: 'array',
       of: [{ type: 'string' }],
     }),
     defineField({
-      name: 'link',
-      title: '連結',
-      type: 'string',
+      name: 'github',
+      title: 'GitHub 連結',
+      type: 'url',
     }),
     defineField({
-      name: 'notes',
-      title: '技術筆記',
-      type: 'array',
-      of: [{ type: 'string' }],
+      name: 'link',
+      title: '網站連結',
+      type: 'url',
     }),
     defineField({
       name: 'featured',
@@ -100,7 +80,8 @@ export const projectType = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'status',
+      subtitle: 'year',
+      media: 'coverImage',
     },
   },
 })

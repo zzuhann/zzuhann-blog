@@ -50,15 +50,15 @@ export const ALL_PROJECTS_QUERY = `
   *[_type == "project" && !(_id in path("drafts.**"))] | order(year desc) {
     _id,
     name,
-    nameZh,
     slug,
     index,
     year,
-    status,
     desc,
     stack,
     link,
-    featured
+    github,
+    featured,
+    coverImage { asset-> }
   }
 `
 
@@ -66,13 +66,12 @@ export const FEATURED_PROJECTS_QUERY = `
   *[_type == "project" && !(_id in path("drafts.**")) && featured == true] | order(year desc)[0...4] {
     _id,
     name,
-    nameZh,
     slug,
     index,
     year,
-    status,
     desc,
-    stack
+    stack,
+    coverImage { asset-> }
   }
 `
 
@@ -80,17 +79,15 @@ export const PROJECT_BY_SLUG_QUERY = `
   *[_type == "project" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
     _id,
     name,
-    nameZh,
     slug,
     index,
     year,
-    status,
     desc,
-    overview,
     stack,
     link,
-    notes,
+    github,
     body,
+    coverImage { asset-> },
     "relatedPosts": relatedPosts[]-> {
       _id,
       title,
@@ -113,7 +110,6 @@ export const ABOUT_QUERY = `
     portrait,
     intro,
     cv,
-    values,
     collaboration,
     email
   }
