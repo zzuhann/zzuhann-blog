@@ -9,17 +9,17 @@ export default function PageHead({ kicker, title, lede }: PageHeadProps) {
     <header
       className="border-b"
       style={{
-        padding: '80px 0 56px',
+        padding: '64px 0 44px',
         borderColor: 'var(--rule)',
-        marginBottom: '56px',
+        marginBottom: '48px',
       }}
     >
       <div
-        className="grid grid-cols-1 md:grid-cols-2 gap-14 items-end"
+        className="grid grid-cols-1 md:grid-cols-2 gap-10 items-end"
       >
         <div>
           <p
-            className="font-mono text-ink-soft uppercase mb-6"
+            className="font-mono text-ink-soft uppercase mb-5"
             style={{ fontSize: '11px', letterSpacing: '.22em' }}
           >
             {kicker}
@@ -27,7 +27,7 @@ export default function PageHead({ kicker, title, lede }: PageHeadProps) {
           <h1
             className="font-serif font-medium text-ink m-0"
             style={{
-              fontSize: 'clamp(48px, 6vw, 80px)',
+              fontSize: 'clamp(36px, 4.5vw, 56px)',
               lineHeight: 1,
               letterSpacing: '-.01em',
             }}
@@ -39,7 +39,7 @@ export default function PageHead({ kicker, title, lede }: PageHeadProps) {
         {lede && (
           <p
             className="font-serif text-ink-muted m-0 leading-[1.8]"
-            style={{ fontSize: '18px', maxWidth: '36ch', textWrap: 'pretty' }}
+            style={{ fontSize: '16px', maxWidth: '38ch', textWrap: 'pretty' }}
           >
             {lede}
           </p>

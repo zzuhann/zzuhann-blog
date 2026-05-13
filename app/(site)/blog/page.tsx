@@ -8,7 +8,7 @@ import PageHead from '@/components/ui/PageHead'
 
 export const metadata: Metadata = {
   title: '文章',
-  description: '一份按時間倒序排列的書寫紀錄。',
+  description: '寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。',
 }
 
 export default async function BlogPage() {
@@ -20,9 +20,9 @@ export default async function BlogPage() {
     <main id="main-content" tabIndex={-1}>
       <div className="wrap">
         <PageHead
-          kicker={`ARCHIVE · 2019—${new Date().getFullYear()} · ${totalCount} ENTRIES`}
-          title={<>文章<em style={{ fontFamily: 'var(--font-latin-serif)', fontStyle: 'italic', color: 'var(--accent)', fontWeight: 400 }}>archive</em></>}
-          lede="一份按時間倒序排列的書寫紀錄。最新的文章在上方。每一篇都標註了標籤與閱讀時間，方便你判斷要不要花這段時間。"
+          kicker={`ARCHIVE · ${totalCount} ARTICLES`}
+          title="文章"
+          lede="寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。"
         />
 
         {byYear.map(([year, list]) => (
@@ -32,8 +32,8 @@ export default async function BlogPage() {
               style={{ borderBottom: '1px solid var(--rule)' }}
             >
               <span
-                className="text-ink"
-                style={{ fontFamily: 'var(--font-latin-serif)', fontSize: '56px', fontWeight: 400, lineHeight: 1, letterSpacing: '-.01em' }}
+                className="text-ink-soft"
+                style={{ fontFamily: 'var(--font-latin-serif)', fontSize: '40px', fontWeight: 400, lineHeight: 1, letterSpacing: '-.01em' }}
               >
                 {year}
               </span>
@@ -56,8 +56,7 @@ export default async function BlogPage() {
                 <Link
                   key={post._id}
                   href={`/blog/${post.slug.current}`}
-                  className="group grid items-baseline border-b border-border py-[26px] hover:bg-white/60 transition-colors no-underline"
-                  style={{ gridTemplateColumns: '96px 1fr 140px', gap: '32px' }}
+                  className="group grid items-start border-b border-border py-5 hover:bg-white/60 hover:px-3.5 transition-all no-underline grid-cols-1 gap-1.5 md:grid-cols-[96px_1fr_140px] md:items-baseline md:gap-8 md:py-[26px]"
                 >
                   <span
                     className="font-mono text-ink-soft"
@@ -80,7 +79,7 @@ export default async function BlogPage() {
                     </h3>
                     {post.excerpt && (
                       <p
-                        className="text-ink-muted m-0"
+                        className="text-ink-muted m-0 hidden md:block"
                         style={{ fontSize: '13.5px', lineHeight: 1.65 }}
                       >
                         {post.excerpt}
