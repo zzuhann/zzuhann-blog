@@ -37,6 +37,8 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   openGraph: {
+    title: "zzuhann's space",
+    description: '寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。',
     type: 'website',
     locale: 'zh_TW',
     siteName: "zzuhann's space",
