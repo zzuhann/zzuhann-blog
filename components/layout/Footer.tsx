@@ -40,7 +40,16 @@ export default function Footer() {
                 zzuhanlin@gmail.com
               </a>
             </li>
-            <li><span className="text-ink-muted">GitHub</span></li>
+            <li>
+              <a href="https://github.com/zzuhann" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-accent transition-colors">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/zzuhanlin/" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-accent transition-colors">
+                LinkedIn
+              </a>
+            </li>
           </FooterCol>
         </div>
 
@@ -48,9 +57,7 @@ export default function Footer() {
           className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-2 font-mono text-ink-soft"
           style={{ fontSize: '11px', letterSpacing: '.08em' }}
         >
-          <span>© 2019—2026 CHIH-HAN CHEN</span>
-          <span className="hidden sm:block">SET IN NOTO SERIF TC · NOTO SANS TC</span>
-          <span>EDITORIAL · est. 2019</span>
+          <span>© {new Date().getFullYear()} ZZUHANN</span>
         </div>
       </div>
     </footer>
