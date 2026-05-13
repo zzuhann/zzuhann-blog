@@ -15,19 +15,11 @@ export default function Footer() {
     >
       <div className="wrap">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">
-          <div>
-            <p
-              className="font-serif mb-2.5"
-              style={{ fontSize: '22px', color: 'var(--text-body)' }}
-            >
-              zzuhann&apos;s space
-            </p>
-          </div>
 
           <FooterCol title="瀏覽">
             {NAV.map(n => (
               <li key={n.href}>
-                <Link href={n.href} className="text-ink-muted hover:text-accent transition-colors">
+                <Link href={n.href} className="text-body-muted hover:text-accent transition-colors">
                   {n.label}
                 </Link>
               </li>
@@ -36,17 +28,17 @@ export default function Footer() {
 
           <FooterCol title="聯絡">
             <li>
-              <a href="mailto:zzuhanlin@gmail.com" className="text-ink-muted hover:text-accent transition-colors">
+              <a href="mailto:zzuhanlin@gmail.com" className="text-body-muted hover:text-accent transition-colors">
                 zzuhanlin@gmail.com
               </a>
             </li>
             <li>
-              <a href="https://github.com/zzuhann" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-accent transition-colors">
+              <a href="https://github.com/zzuhann" target="_blank" rel="noopener noreferrer" className="text-body-muted hover:text-accent transition-colors">
                 GitHub
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/zzuhanlin/" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/in/zzuhanlin/" target="_blank" rel="noopener noreferrer" className="text-body-muted hover:text-accent transition-colors">
                 LinkedIn
               </a>
             </li>
@@ -54,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div
-          className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-2 font-mono text-ink-soft"
+          className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-2 font-mono text-body-soft"
           style={{ fontSize: '11px', letterSpacing: '.08em' }}
         >
           <span>© {new Date().getFullYear()} ZZUHANN</span>
@@ -68,13 +60,13 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   return (
     <div>
       <p
-        className="font-mono text-ink-soft uppercase mb-[18px]"
+        className="font-mono text-body-soft uppercase mb-[18px]"
         style={{ fontSize: '10px', letterSpacing: '.18em' }}
       >
         {title}
       </p>
       <ul
-        className="list-none m-0 p-0 flex flex-col gap-2.5 text-ink-muted"
+        className="list-none m-0 p-0 flex flex-col gap-2.5 text-body-muted"
         style={{ fontSize: '14px' }}
       >
         {children}

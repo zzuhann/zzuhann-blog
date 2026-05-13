@@ -5,7 +5,7 @@ export default function AboutSection({ label, children }: { label: string; child
       style={{ paddingTop: '28px', borderTop: '1px solid var(--border)' }}
     >
       <h2
-        className="font-mono text-ink-soft uppercase mb-5"
+        className="font-mono text-body-soft uppercase mb-5"
         style={{ fontSize: '11px', letterSpacing: '.2em', fontWeight: 400 }}
       >
         {label}

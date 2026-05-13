@@ -99,7 +99,7 @@ pnpm dev
 | `--accent` | `#4A6FA5` | 連結、強調（青藍） |
 | `--accent-ink` | `#2F4D78` | hover、內嵌程式碼 |
 
-Tailwind 4 使用方式：`bg-paper`、`text-ink`、`text-ink-muted`、`text-accent` 等。
+Tailwind 4 使用方式：`bg-paper`、`text-body`、`text-body-muted`、`text-body-soft`、`text-accent` 等。
 
 ## Sanity 設定
 

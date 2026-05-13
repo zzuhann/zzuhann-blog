@@ -12,7 +12,7 @@ export default function HeroSection() {
     >
       <div className="wrap">
         <div
-          className="font-mono text-ink-soft uppercase flex gap-[14px] items-center"
+          className="font-mono text-body-soft uppercase flex gap-[14px] items-center"
           style={{ fontSize: '11px', letterSpacing: '.2em', marginBottom: '36px' }}
         >
           <span>ISSUE №.001</span>
@@ -36,14 +36,14 @@ export default function HeroSection() {
 
           <div>
             <p
-              className="text-ink-muted leading-[1.85] mb-8"
+              className="text-body-muted leading-[1.85] mb-8"
               style={{ fontSize: '16px', maxWidth: '34ch' }}
             >
               寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。
             </p>
 
             <div
-              className="flex flex-col gap-4 font-mono text-ink-soft uppercase"
+              className="flex flex-col gap-4 font-mono text-body-soft uppercase"
               style={{ fontSize: '11px', letterSpacing: '.12em' }}
             >
               <MetaRow label="本期主題" value="[STELLAR 開發日記] STELLAR — 台灣生日應援地圖誕生！" />
@@ -59,11 +59,11 @@ export default function HeroSection() {
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
     <div
-      className="flex justify-between border-b text-ink-soft"
+      className="flex justify-between border-b text-body-soft"
       style={{ padding: '12px 0', borderColor: 'var(--border)', borderStyle: 'dashed' }}
     >
       <span className="shrink-0">{label}</span>
-      <strong className="text-ink font-medium text-right">{value}</strong>
+      <strong className="text-body font-medium text-right">{value}</strong>
     </div>
   )
 }

@@ -13,7 +13,7 @@ export default function MobileNav({ nav }: { nav: NavItem[] }) {
       <button
         onClick={() => setOpen(prev => !prev)}
         aria-label={open ? '關閉選單' : '開啟選單'}
-        className="text-ink-muted hover:text-ink-70 transition-colors p-1"
+        className="text-body-muted hover:text-body transition-colors p-1"
       >
         {open ? (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -37,10 +37,10 @@ export default function MobileNav({ nav }: { nav: NavItem[] }) {
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-8 py-3 text-ink-muted hover:text-ink-70 hover:bg-white/50 transition-colors"
+                className="flex items-center gap-3 px-8 py-3 text-body-muted hover:text-body hover:bg-white/50 transition-colors"
               >
                 <span
-                  className="font-mono text-ink-soft"
+                  className="font-mono text-body-soft"
                   style={{ fontSize: '10px', letterSpacing: '.12em' }}
                 >
                   {n.num}

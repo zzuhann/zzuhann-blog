@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: Props) {
       <div className="wrap">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 font-mono text-ink-muted uppercase hover:text-accent transition-colors"
+          className="inline-flex items-center gap-2 font-mono text-body-muted uppercase hover:text-accent transition-colors"
           style={{ fontSize: '11px', letterSpacing: '.14em', padding: '12px 0 24px', display: 'inline-flex' }}
         >
           ← 回到專案列表
@@ -50,13 +50,13 @@ export default async function ProjectPage({ params }: Props) {
         >
           <div>
             <p
-              className="font-mono text-ink-soft uppercase mb-7"
+              className="font-mono text-body-soft uppercase mb-7"
               style={{ fontSize: '11px', letterSpacing: '.22em' }}
             >
               PROJECT {project.index} · {project.year}
             </p>
             <h1
-              className="font-serif font-medium text-ink"
+              className="font-serif font-medium text-body"
               style={{
                 fontSize: 'clamp(40px, 5vw, 64px)',
                 lineHeight: 1.08,
@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: Props) {
             )}
             {project.overview && (
               <p
-                className="font-serif text-ink-muted leading-[1.8] m-0"
+                className="font-serif text-body-muted leading-[1.8] m-0"
                 style={{ fontSize: '19px', textWrap: 'pretty' }}
               >
                 {project.overview}
@@ -109,7 +109,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Hero image placeholder */}
         <div
-          className="flex items-center justify-center text-ink-soft font-mono uppercase my-14"
+          className="flex items-center justify-center text-body-soft font-mono uppercase my-14"
           style={{
             aspectRatio: '21/9',
             background: 'repeating-linear-gradient(135deg, #EDE7DD 0 8px, #E6E0D8 8px 16px)',
@@ -159,7 +159,7 @@ export default async function ProjectPage({ params }: Props) {
                 style={{ borderTop: '1px solid var(--rule)' }}
               >
                 <p
-                  className="font-mono text-ink-soft uppercase mb-7"
+                  className="font-mono text-body-soft uppercase mb-7"
                   style={{ fontSize: '11px', letterSpacing: '.2em' }}
                 >
                   RELATED ARTICLES · 相關書寫
@@ -172,13 +172,13 @@ export default async function ProjectPage({ params }: Props) {
                       className="group border-t border-border pt-[18px] hover:no-underline cursor-pointer"
                     >
                       <div
-                        className="font-mono text-ink-soft mb-2.5"
+                        className="font-mono text-body-soft mb-2.5"
                         style={{ fontSize: '10.5px', letterSpacing: '.14em' }}
                       >
                         {r.issueNumber} · {r.publishedAt && formatDate(r.publishedAt)}
                       </div>
                       <h3
-                        className="font-serif font-medium text-ink group-hover:text-accent transition-colors m-0"
+                        className="font-serif font-medium text-body group-hover:text-accent transition-colors m-0"
                         style={{ fontSize: '18px', lineHeight: 1.4 }}
                       >
                         {r.title}

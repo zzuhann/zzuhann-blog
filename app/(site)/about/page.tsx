@@ -22,7 +22,7 @@ export default async function AboutPage() {
       <section className="border-b border-border" style={{ padding: '40px 0' }}>
         <div className="wrap">
           <div
-            className="font-mono text-ink-soft uppercase flex gap-[14px] items-center"
+            className="font-mono text-body-soft uppercase flex gap-[14px] items-center"
             style={{ fontSize: '11px', letterSpacing: '.2em', marginBottom: '36px' }}
           >
             <span>ABOUT ME</span>
@@ -76,13 +76,13 @@ export default async function AboutPage() {
                 className="grid gap-6 py-4 border-b border-border items-baseline"
                 style={{ gridTemplateColumns: '90px 1fr 1fr' }}
               >
-                <span className="font-mono text-ink-soft" style={{ fontSize: '12px', letterSpacing: '.1em' }}>
+                <span className="font-mono text-body-soft" style={{ fontSize: '12px', letterSpacing: '.1em' }}>
                   {row.period}
                 </span>
                 <span className="font-serif font-normal" style={{ fontSize: '16px', color: 'var(--text-body)' }}>
                   {row.role}
                 </span>
-                <span className="text-ink-muted" style={{ fontSize: '13.5px' }}>
+                <span className="text-body-muted" style={{ fontSize: '13.5px' }}>
                   {row.place}
                 </span>
               </div>

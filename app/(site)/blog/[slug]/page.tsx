@@ -42,7 +42,7 @@ export default async function PostPage({ params }: Props) {
       <div className="wrap-read">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-ink-muted uppercase hover:text-accent transition-colors"
+          className="inline-flex items-center gap-2 font-mono text-body-muted uppercase hover:text-accent transition-colors"
           style={{ fontSize: '11px', letterSpacing: '.14em', padding: '12px 0 24px', display: 'inline-flex' }}
         >
           ← 回到文章列表
@@ -50,7 +50,7 @@ export default async function PostPage({ params }: Props) {
 
         <header style={{ marginBottom: '64px' }}>
           <div
-            className="font-mono text-ink-soft uppercase flex gap-[18px] items-center"
+            className="font-mono text-body-soft uppercase flex gap-[18px] items-center"
             style={{ fontSize: '11px', letterSpacing: '.22em', marginBottom: '32px' }}
           >
             <span>{post.issueNumber}</span>
@@ -59,7 +59,7 @@ export default async function PostPage({ params }: Props) {
           </div>
 
           <h1
-            className="font-serif font-medium text-ink"
+            className="font-serif font-medium text-body"
             style={{
               fontSize: 'clamp(36px, 4.8vw, 56px)',
               lineHeight: 1.15,
@@ -89,12 +89,12 @@ export default async function PostPage({ params }: Props) {
           )}
 
           <div
-            className="flex gap-7 pt-[22px] font-mono text-ink-soft uppercase"
+            className="flex gap-7 pt-[22px] font-mono text-body-soft uppercase"
             style={{ fontSize: '11px', letterSpacing: '.12em', borderTop: '1px solid var(--text)' }}
           >
-            <span>發布<strong className="text-ink font-medium ml-2">{formatDate(post.publishedAt)}</strong></span>
+            <span>發布<strong className="text-body font-medium ml-2">{formatDate(post.publishedAt)}</strong></span>
             {post.estimatedReadingTime && (
-              <span>閱讀<strong className="text-ink font-medium ml-2">{post.estimatedReadingTime} 分鐘</strong></span>
+              <span>閱讀<strong className="text-body font-medium ml-2">{post.estimatedReadingTime} 分鐘</strong></span>
             )}
           </div>
         </header>
@@ -106,7 +106,7 @@ export default async function PostPage({ params }: Props) {
         )}
 
         <div
-          className="flex justify-between font-mono text-ink-soft uppercase mt-20 pt-8"
+          className="flex justify-between font-mono text-body-soft uppercase mt-20 pt-8"
           style={{ fontSize: '11px', letterSpacing: '.12em', borderTop: '1px solid var(--border)' }}
         >
           <span>END · {post.issueNumber}</span>
@@ -119,7 +119,7 @@ export default async function PostPage({ params }: Props) {
             style={{ borderTop: '1px solid var(--rule)' }}
           >
             <p
-              className="font-mono text-ink-soft uppercase mb-7"
+              className="font-mono text-body-soft uppercase mb-7"
               style={{ fontSize: '11px', letterSpacing: '.2em' }}
             >
               RELATED · 延伸閱讀
@@ -132,13 +132,13 @@ export default async function PostPage({ params }: Props) {
                   className="group border-t border-border pt-[18px] hover:no-underline cursor-pointer"
                 >
                   <div
-                    className="font-mono text-ink-soft mb-2.5"
+                    className="font-mono text-body-soft mb-2.5"
                     style={{ fontSize: '10.5px', letterSpacing: '.14em' }}
                   >
                     {r.issueNumber} · {formatDate(r.publishedAt)}
                   </div>
                   <h2
-                    className="font-serif font-medium text-ink group-hover:text-accent transition-colors m-0"
+                    className="font-serif font-medium text-body group-hover:text-accent transition-colors m-0"
                     style={{ fontSize: '18px', lineHeight: 1.4 }}
                   >
                     {r.title}

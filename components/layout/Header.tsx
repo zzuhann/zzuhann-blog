@@ -48,11 +48,11 @@ function NavItem({ href, num, label }: { href: string; num: string; label: strin
   return (
     <Link
       href={href}
-      className="relative text-ink-muted hover:text-ink-70 transition-colors"
+      className="relative text-body-muted hover:text-body transition-colors"
       style={{ fontSize: '13.5px', letterSpacing: '.04em', padding: '4px 0' }}
     >
       <span
-        className="font-mono text-ink-soft mr-1.5"
+        className="font-mono text-body-soft mr-1.5"
         style={{ fontSize: '10px', letterSpacing: '.1em' }}
       >
         {num}

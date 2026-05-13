@@ -32,19 +32,19 @@ export default async function BlogPage() {
               style={{ borderBottom: '1px solid var(--rule)' }}
             >
               <span
-                className="text-ink-soft"
+                className="text-body-soft"
                 style={{ fontFamily: 'var(--font-latin-serif)', fontSize: '40px', fontWeight: 400, lineHeight: 1, letterSpacing: '-.01em' }}
               >
                 {year}
               </span>
               <span
-                className="font-mono text-ink-soft uppercase"
+                className="font-mono text-body-soft uppercase"
                 style={{ fontSize: '11px', letterSpacing: '.18em' }}
               >
                 YEAR
               </span>
               <span
-                className="font-mono text-ink-soft ml-auto"
+                className="font-mono text-body-soft ml-auto"
                 style={{ fontSize: '11px', letterSpacing: '.15em' }}
               >
                 {list.length} ARTICLES
@@ -59,7 +59,7 @@ export default async function BlogPage() {
                   className="group grid items-start border-b border-border py-5 hover:bg-white/60 hover:px-3.5 transition-all no-underline grid-cols-1 gap-1.5 md:grid-cols-[96px_1fr_140px] md:items-baseline md:gap-8 md:py-[26px]"
                 >
                   <span
-                    className="font-mono text-ink-soft"
+                    className="font-mono text-body-soft"
                     style={{ fontSize: '11px', letterSpacing: '.1em' }}
                   >
                     {formatDate(post.publishedAt)}
@@ -67,7 +67,7 @@ export default async function BlogPage() {
 
                   <div>
                     <h3
-                      className="font-serif font-medium text-ink group-hover:text-accent transition-colors mb-1.5"
+                      className="font-serif font-medium text-body group-hover:text-accent transition-colors mb-1.5"
                       style={{
                         fontSize: '21px',
                         lineHeight: 1.4,
@@ -79,7 +79,7 @@ export default async function BlogPage() {
                     </h3>
                     {post.excerpt && (
                       <p
-                        className="text-ink-muted m-0 hidden md:block"
+                        className="text-body-muted m-0 hidden md:block"
                         style={{ fontSize: '13.5px', lineHeight: 1.65 }}
                       >
                         {post.excerpt}
@@ -88,7 +88,7 @@ export default async function BlogPage() {
                   </div>
 
                   <div
-                    className="text-right font-mono text-ink-soft hidden md:block"
+                    className="text-right font-mono text-body-soft hidden md:block"
                     style={{ fontSize: '10.5px', letterSpacing: '.12em' }}
                   >
                     {post.tags?.[0] && <div>{post.tags[0]}</div>}

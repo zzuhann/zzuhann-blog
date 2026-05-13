@@ -25,7 +25,7 @@ export default function AboutPreview() {
 
           <div>
             <p
-              className="font-serif text-ink mb-6 leading-[1.85]"
+              className="font-serif text-body mb-6 leading-[1.85]"
               style={{
                 fontSize: '16px',
                 fontFeatureSettings: '"palt"',
@@ -40,7 +40,7 @@ export default function AboutPreview() {
             </p>
             <Link
               href="/about"
-              className="inline-block font-mono text-ink uppercase border border-border hover:border-ink transition-colors"
+              className="inline-block font-mono text-body uppercase border border-border hover:border-body transition-colors"
               style={{ fontSize: '11px', letterSpacing: '.16em', padding: '10px 20px' }}
             >
               關於我 →

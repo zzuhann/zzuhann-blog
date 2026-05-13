@@ -317,7 +317,7 @@ jobs:
 | `--text-muted` | `#6B6B6B` | 摘要、副標、次要說明 |
 | `--text-soft` | `#9A9A9A` | 日期、編號、元資料（僅大字級） |
 
-Tailwind class：`text-ink`、`text-body`、`text-ink-muted`、`text-ink-soft`。
+Tailwind class：`text-body`、`text-body-muted`、`text-body-soft`。（`text-ink` 已全域替換為 `text-body`）
 
 ---
 

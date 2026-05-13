@@ -21,14 +21,14 @@ export default function SectionHead({
       <div>
         {chapterNum && (
           <span
-            className="font-mono text-ink-soft uppercase block mb-3.5"
+            className="font-mono text-body-soft uppercase block mb-3.5"
             style={{ fontSize: '11px', letterSpacing: '.22em' }}
           >
             {chapterNum}
           </span>
         )}
         <h2
-          className="font-serif font-medium text-ink m-0"
+          className="font-serif font-medium text-body m-0"
           style={{ fontSize: 'clamp(28px, 5vw, 36px)', letterSpacing: '-.01em', fontWeight: '900' }}
         >
           {title}
@@ -38,7 +38,7 @@ export default function SectionHead({
       {linkLabel && linkHref && (
         <Link
           href={linkHref}
-          className="font-mono text-ink uppercase border-b border-ink pb-0.5 self-end justify-self-end hover:text-accent hover:border-accent transition-colors"
+          className="font-mono text-body uppercase border-b border-body pb-0.5 self-end justify-self-end hover:text-accent hover:border-accent transition-colors"
           style={{ fontSize: '11px', letterSpacing: '.15em' }}
         >
           {linkLabel}

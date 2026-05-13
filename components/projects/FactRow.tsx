@@ -11,12 +11,12 @@ export default function FactRow({ label, value }: { label: string; value: React.
       }}
     >
       <span
-        className="font-mono text-ink-soft uppercase"
+        className="font-mono text-body-soft uppercase"
         style={{ fontSize: '10.5px', letterSpacing: '.16em' }}
       >
         {label}
       </span>
-      <span className="text-ink">{value}</span>
+      <span className="text-body">{value}</span>
     </div>
   )
 }
