@@ -10,7 +10,6 @@ export default function FeaturedPosts({ posts }: { posts: Post[] }) {
         <SectionHead
           chapterNum="CHAPTER 01"
           title="精選文章"
-          subtitle="從近一年的書寫裡挑選出幾篇——關於資料邊界、克制、排版，以及那些不容易講清楚但又值得寫下來的小事。"
           linkLabel="所有文章 →"
           linkHref="/blog"
         />
@@ -20,8 +19,7 @@ export default function FeaturedPosts({ posts }: { posts: Post[] }) {
             <Link
               key={post._id}
               href={`/blog/${post.slug.current}`}
-              className="group grid items-baseline border-b border-border py-7 hover:bg-white/50 hover:px-3.5 transition-all cursor-pointer no-underline"
-              style={{ gridTemplateColumns: '80px 1fr 220px 90px', gap: '32px' }}
+              className="group grid items-start border-b border-border py-6 hover:bg-white/50 hover:px-3.5 transition-all cursor-pointer no-underline grid-cols-1 gap-2 md:grid-cols-[80px_1fr_90px] md:items-baseline md:gap-6"
             >
               <span
                 className="font-mono text-ink-soft"
@@ -52,13 +50,13 @@ export default function FeaturedPosts({ posts }: { posts: Post[] }) {
                 )}
               </div>
 
-              <span
+              {/* <span
                 className="font-mono text-ink-soft hidden md:block"
                 style={{ fontSize: '10.5px', letterSpacing: '.14em', textTransform: 'uppercase' }}
               >
                 {post.tags?.[0] && `${post.tags[0]} · `}
                 {post.estimatedReadingTime && `${post.estimatedReadingTime} 分鐘`}
-              </span>
+              </span> */}
 
               <span
                 className="font-mono text-ink-soft text-right hidden sm:block"
