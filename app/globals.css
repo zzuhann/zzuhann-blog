@@ -66,6 +66,7 @@
   --text:        #1F1F1F;
   --text-muted:  #6B6B6B;
   --text-soft:   #9A9A9A;
+  --text-body:   #4A4A4A;
   --accent:      #4A6FA5;
   --accent-ink:  #2F4D78;
   --border:      #E6E0D8;
@@ -158,16 +159,18 @@ img {
    ============================================================ */
 
 .prose {
-  font-family: var(--font-serif);
+  font-family: var(--font-serif-tc), "Noto Serif TC", "Source Han Serif TC", serif;
   font-size: 17.5px;
   line-height: 1.9;
   color: var(--text);
-  font-feature-settings: "palt";
+  font-feature-settings: "palt" 1;
+  text-spacing-trim: trim-all;
 }
 
 .prose p {
   margin: 0 0 1.4em;
   text-wrap: pretty;
+  color: var(--text-body);
 }
 
 .prose h2 {
@@ -209,10 +212,10 @@ img {
 .prose code {
   font-family: var(--font-mono);
   font-size: .86em;
-  background: var(--bg-soft);
+  background: var(--color-accent-05, #EEF2F8);
   padding: 2px 6px;
-  border-radius: 2px;
-  color: var(--accent-ink);
+  border-radius: 4px;
+  color: var(--color-accent-70, #4A6FA5);
 }
 
 .prose pre {
@@ -243,13 +246,21 @@ img {
   border-bottom-color: var(--accent);
 }
 
-.prose ul, .prose ol {
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.2em;
+  margin: 0 0 1.4em;
+}
+
+.prose ol {
+  list-style-type: decimal;
   padding-left: 1.2em;
   margin: 0 0 1.4em;
 }
 
 .prose li {
   margin-bottom: .5em;
+  color: var(--text-body);
 }
 
 .prose .figure {

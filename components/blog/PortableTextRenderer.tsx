@@ -45,16 +45,18 @@ const components = {
       value: { asset: { _ref: string }; caption?: string; alt?: string }
     }) => {
       if (!value?.asset) return null
+      const match = value.asset._ref.match(/-(\d+)x(\d+)-/)
+      const width = match?.[1] ? parseInt(match[1]) : 1200
+      const height = match?.[2] ? parseInt(match[2]) : 800
       return (
         <figure className="figure">
-          <div style={{ position: 'relative', aspectRatio: '16/9' }}>
-            <Image
-              src={urlForImage(value.asset).url()}
-              alt={value.alt ?? ''}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <Image
+            src={urlForImage(value.asset).url()}
+            alt={value.alt ?? ''}
+            width={width}
+            height={height}
+            className="w-full h-auto"
+          />
           {value.caption && (
             <figcaption className="figure__cap">
               <span>{value.caption}</span>
