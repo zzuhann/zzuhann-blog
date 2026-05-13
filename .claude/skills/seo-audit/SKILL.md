@@ -13,7 +13,7 @@ metadata:
 
 ## Platform Context
 
-- 平台：之翰の備忘錄（個人技術部落格）
+- 平台：zzuhann's space（個人技術部落格）
 - Tech stack：Next.js 16 App Router、Sanity CMS、Tailwind CSS 4、Vercel
 - 目標讀者：台灣前端工程師、軟體開發者
 - 內容類型：前端技術筆記、軟體開發心得、生活隨筆（繁體中文為主）

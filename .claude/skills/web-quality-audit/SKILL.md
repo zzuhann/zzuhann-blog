@@ -13,7 +13,7 @@ metadata:
 
 ## Platform Context
 
-- 平台：之翰の備忘錄（個人技術部落格）
+- 平台：zzuhann's space（個人技術部落格）
 - Tech stack：Next.js 16 App Router、Sanity CMS、Tailwind CSS 4、Vercel
 - 部署：Vercel（自動靜態生成 + Serverless Functions）
 - 字型：Noto Serif TC、Noto Sans TC、EB Garamond、JetBrains Mono（Google Fonts）

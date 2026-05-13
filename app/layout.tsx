@@ -19,10 +19,10 @@ const notoSerifTC = Noto_Serif_TC({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s — 之翰の備忘錄',
-    default: '之翰の備忘錄',
+    template: '%s — zzuhann&apos;s space',
+    default: 'zzuhann&apos;s space',
   },
-  description: '一份關於介面、程式碼與閱讀的個人技術期刊。',
+  description: '寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
   ),

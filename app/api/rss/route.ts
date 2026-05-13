@@ -10,9 +10,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>之翰の備忘錄</title>
+    <title>zzuhann's space</title>
     <link>${SITE_URL}</link>
-    <description>一份關於介面、程式碼與閱讀的個人技術期刊。</description>
+    <description>寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。</description>
     <language>zh-TW</language>
     <atom:link href="${SITE_URL}/api/rss" rel="self" type="application/rss+xml" />
     ${posts

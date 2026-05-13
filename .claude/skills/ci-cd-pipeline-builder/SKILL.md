@@ -5,7 +5,7 @@ description: "建立或更新 GitHub Actions CI/CD pipeline。使用時機：設
 
 # CI/CD Pipeline Builder
 
-為「之翰の備忘錄」建立和維護 GitHub Actions CI pipeline。
+為「zzuhann's space」建立和維護 GitHub Actions CI pipeline。
 
 ## Platform Context
 

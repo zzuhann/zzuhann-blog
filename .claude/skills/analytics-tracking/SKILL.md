@@ -9,7 +9,7 @@ metadata:
 
 # Analytics Tracking
 
-為「之翰の備忘錄」設定 GA4 追蹤。個人部落格不需要 GTM 或複雜的 event taxonomy，直接用 `@next/third-parties/google` 最省力。
+為「zzuhann's space」設定 GA4 追蹤。個人部落格不需要 GTM 或複雜的 event taxonomy，直接用 `@next/third-parties/google` 最省力。
 
 ## Platform Context
 

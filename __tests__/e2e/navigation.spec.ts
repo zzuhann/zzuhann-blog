@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 test.describe('頁面導航', () => {
   test('首頁正常載入', async ({ page }) => {
     await page.goto('/')
-    await expect(page).toHaveTitle(/之翰の備忘錄/)
-    await expect(page.getByRole('banner').getByText('之翰の備忘錄')).toBeVisible()
+    await expect(page).toHaveTitle(/zzuhann's space/)
+    await expect(page.getByRole('banner').getByText('zzuhann\'s space')).toBeVisible()
   })
 
   test('文章列表頁正常載入', async ({ page }) => {

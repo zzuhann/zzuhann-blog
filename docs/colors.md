@@ -1,6 +1,6 @@
 # 色彩設計系統
 
-**之翰の備忘錄 · DOC.01 / COLOR · REV 2026.05**
+**zzuhann's space · DOC.01 / COLOR · REV 2026.05**
 
 > 這份色彩系統服務於一個編輯式的技術期刊。它的目標不是視覺上的活潑，而是讓長時間的閱讀仍然舒適。所有色彩被設計成在白天與印刷品之間都能成立。
 
@@ -181,4 +181,4 @@
 
 ---
 
-*REVISION REV — A · 2026.05 · Maintainer: 之翰 · Status: Stable*
+*REVISION REV — A · 2026.05 · Maintainer: zzuhann · Status: Stable*
