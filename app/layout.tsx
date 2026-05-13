@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css'
 
 const notoSansTC = Noto_Sans_TC({
@@ -60,7 +61,10 @@ export default function RootLayout({
       lang="zh-Hant"
       className={`${notoSansTC.variable} ${notoSerifTC.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
       {process.env.NEXT_PUBLIC_GA_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       )}
