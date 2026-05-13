@@ -102,7 +102,7 @@ export default async function AboutPage() {
               COLLABORATION · 合作
             </h2>
           </div>
-          <div className="font-serif leading-[1.9] [&_p]:mb-[2em] [&_p:last-child]:mb-0" style={{ fontSize: '16px', maxWidth: '38ch', color: 'var(--text-body)' }}>
+          <div className="font-serif leading-[1.9] [&_p]:mb-[2em] [&_p:last-child]:mb-0 max-w-[38ch] md:max-w-none" style={{ fontSize: '16px', color: 'var(--text-body)' }}>
             {about?.collaboration && (
               <PortableTextRenderer value={about.collaboration as PortableTextBlock[]} />
             )}
