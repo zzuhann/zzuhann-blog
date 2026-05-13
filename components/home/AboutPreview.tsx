@@ -25,13 +25,8 @@ export default function AboutPreview() {
 
           <div>
             <p
-              className="font-serif text-body mb-6 leading-[1.85]"
-              style={{
-                fontSize: '16px',
-                fontFeatureSettings: '"palt"',
-                letterSpacing: '.01em',
-                textWrap: 'pretty',
-              }}
+              className="text-body-muted mb-6 leading-[1.85]"
+              style={{ fontSize: '16px', textWrap: 'pretty' }}
             >
               約三年半前端工程師經驗，擅長 React, Next.js, TypeScript, Styled-Components, PandaCSS, etc. 希望做的產品服務可以解決使用者痛點，也能產生一些正面的影響。
               <br/>

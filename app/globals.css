@@ -162,7 +162,7 @@ img {
 }
 
 @media (max-width: 640px) {
-  .wrap, .wrap-read { padding: 0 20px; }
+  .wrap, .wrap-read { padding: 20px; }
 }
 
 /* ============================================================

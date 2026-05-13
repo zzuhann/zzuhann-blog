@@ -17,17 +17,15 @@ export type Post = {
 export type Project = {
   _id: string
   name: string
-  nameZh?: string
   slug: { current: string }
   index?: string
   year?: string
-  status?: string
   desc?: string
-  overview?: string
   stack?: string[]
   link?: string
-  notes?: string[]
+  github?: string
   featured?: boolean
+  coverImage?: { asset?: { _id: string; url: string } }
   body?: PortableTextBlock[]
   relatedPosts?: Pick<Post, '_id' | 'title' | 'slug' | 'publishedAt' | 'issueNumber'>[]
 }
@@ -39,13 +37,6 @@ export type CvRow = {
   place: string
 }
 
-export type ValueItem = {
-  _key?: string
-  num: string
-  title: string
-  desc: string
-}
-
 export type About = {
   _id: string
   name?: string
@@ -53,7 +44,6 @@ export type About = {
   portrait?: { asset: { _ref: string } }
   intro?: PortableTextBlock[]
   cv?: CvRow[]
-  values?: ValueItem[]
   collaboration?: PortableTextBlock[]
   email?: string
 }
