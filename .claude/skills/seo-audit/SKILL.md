@@ -1,163 +1,132 @@
 ---
 name: 'seo-audit'
-description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," or "SEO health check." For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema-markup.某個頁面做完之後，檢查 SEO 有沒有缺漏
+description: 當使用者想稽核 SEO、診斷排名問題、或完成一篇文章後檢查 SEO 有沒有缺漏時使用。觸發詞：SEO audit、技術 SEO、meta tags、為什麼沒有排名、SEO 健康檢查。
 license: MIT
 metadata:
-  version: 1.0.0
-  author: Alireza Rezvani
-  category: marketing
-  updated: 2026-03-06
+  version: 2.0.0
+  updated: 2026-05-13
 ---
 
 # SEO Audit
 
-You are an expert in search engine optimization. Your goal is to identify SEO issues and provide actionable recommendations to improve organic search performance.
+你是 SEO 專家。目標是找出問題並給出可執行的修正建議，優先處理高影響的技術問題。
 
 ## Platform Context
 
-- 平台：台灣 K-pop 生日咖啡廳活動地圖（STELLAR）
-- Tech stack：Next.js App Router、Firestore、Cloudflare R2
-- 目標用戶：台灣 K-pop 粉絲
-- 主要頁面：首頁地圖、場地頁、活動頁
-- 流量來源：Threads、Google 搜尋（中文關鍵字為主）
+- 平台：之翰の備忘錄（個人技術部落格）
+- Tech stack：Next.js 16 App Router、Sanity CMS、Tailwind CSS 4、Vercel
+- 目標讀者：台灣前端工程師、軟體開發者
+- 內容類型：前端技術筆記、軟體開發心得、生活隨筆（繁體中文為主）
+- 流量來源目標：Google 搜尋（繁中技術關鍵字）
+- Sitemap：`/sitemap.xml`（動態，從 Sanity 生成）
 
-## Initial Assessment
+## 稽核前確認
 
-**Check for product marketing context first:**
-If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+稽核前先了解：
 
-Before auditing, understand:
-
-1. **Site Context**
-   - What type of site? (SaaS, e-commerce, blog, etc.)
-   - What's the primary business goal for SEO?
-   - What keywords/topics are priorities?
-
-2. **Current State**
-   - Any known issues or concerns?
-   - Current organic traffic level?
-   - Recent changes or migrations?
-
-3. **Scope**
-   - Full site audit or specific pages?
-   - Technical + on-page, or one focus area?
-   - Access to Search Console / analytics?
+1. **範圍**：全站稽核、還是特定文章/頁面？
+2. **已知問題**：有沒有特定排名不佳的頁面或關鍵字？
+3. **Search Console**：有沒有 Google Search Console 存取權限？
 
 ---
 
-## Audit Framework
+## 稽核框架
 
-→ See references/seo-audit-reference.md for details
+### 1. 技術 SEO
 
-## Output Format
+**`<meta>` 和 Open Graph**
+- 每篇文章是否有獨立的 `<title>`（文章標題）
+- `<meta name="description">` 是否存在且長度合理（120–160 字元）
+- Open Graph tags（`og:title`、`og:description`、`og:image`）是否完整
+- 在 Next.js App Router 架構下，確認 `generateMetadata()` 是否正確實作
 
-### Audit Report Structure
+**Sitemap 和 robots.txt**
+- `/sitemap.xml` 是否包含所有文章和專案頁面
+- `lastModified` 是否使用實際 `publishedAt`，而不是當下時間
+- `/robots.txt` 是否允許 Googlebot、GPTBot、PerplexityBot、ClaudeBot
+- `NEXT_PUBLIC_SITE_URL` 環境變數是否已設定（sitemap 的 base URL 依賴此值）
 
-**Executive Summary**
+**Canonical URL**
+- 是否每頁都有正確的 canonical tag
+- Next.js 的 `alternates.canonical` 是否設定
 
-- Overall health assessment
-- Top 3-5 priority issues
-- Quick wins identified
+**Structured Data（Schema markup）**
+- 文章頁是否有 `Article` 或 `BlogPosting` schema
+- 首頁是否有 `Person` 或 `WebSite` schema
+- 使用 [Rich Results Test](https://search.google.com/test/rich-results) 驗證
 
-**Technical SEO Findings**
-For each issue:
+**Core Web Vitals**
+- LCP（最大內容繪製）< 2.5s
+- CLS（累積版面位移）< 0.1
+- INP < 200ms
+- 用 PageSpeed Insights 測試，特別注意文章頁（有圖片的情況）
 
-- **Issue**: What's wrong
-- **Impact**: SEO impact (High/Medium/Low)
-- **Evidence**: How you found it
-- **Fix**: Specific recommendation
-- **Priority**: 1-5 or High/Medium/Low
+### 2. On-Page SEO
 
-**On-Page SEO Findings**
-Same format as above
+**標題結構**
+- `<h1>` 是否唯一且包含目標關鍵字
+- heading 層級是否正確（不跳 h1 → h3）
+- 文章列表頁的 `<h3>` 文章標題是否語義清楚
 
-**Content Findings**
-Same format as above
+**文章內容**
+- 文章是否有明確的 `excerpt`（摘要）
+- 圖片是否有 `alt` 屬性
+- 內部連結是否合理（文章之間互相引用）
+- 文章 URL（slug）是否簡潔且具描述性
 
-**Prioritized Action Plan**
+**關鍵字（繁中技術文章）**
+- 常見搜尋模式：`[技術名詞] 教學`、`[工具名] 怎麼用`、`[概念] 是什麼`、`Next.js [功能] 實作`
+- 文章標題應自然包含目標關鍵字，不要刻意堆砌
 
-1. Critical fixes (blocking indexation/ranking)
-2. High-impact improvements
-3. Quick wins (easy, immediate benefit)
-4. Long-term recommendations
+### 3. 內容 SEO
 
----
+**文章結構**
+- 前 150 字是否就能讓讀者知道這篇文章在講什麼
+- 長文章是否有目錄（TableOfContents）
+- 是否有明確的結論或總結段落
 
-## References
-
-- [AI Writing Detection](references/ai-writing-detection.md): Common AI writing patterns to avoid (em dashes, overused phrases, filler words)
-- [AEO & GEO Patterns](references/aeo-geo-patterns.md): Content patterns optimized for answer engines and AI citation
-
----
-
-## Tools Referenced
-
-**Free Tools**
-
-- Google Search Console (essential)
-- Google PageSpeed Insights
-- Bing Webmaster Tools
-- Rich Results Test
-- Mobile-Friendly Test
-- Schema Validator
-
-**Paid Tools** (if available)
-
-- Screaming Frog
-- Ahrefs / Semrush
-- Sitebulb
-- ContentKing
+**索引狀況**
+- Draft Mode 的草稿文章是否不被索引（`noindex`）
 
 ---
 
-## Task-Specific Questions
+## 輸出格式
 
-1. What pages/keywords matter most?
-2. Do you have Search Console access?
-3. Any recent changes or migrations?
-4. Who are your top organic competitors?
-5. What's your current organic traffic baseline?
+```
+## SEO 稽核報告
 
----
+### 摘要
+- 整體狀況評估
+- 前 3 個優先問題
 
-## Related Skills
+### 技術 SEO 問題
+[問題] 描述
+[影響] High / Medium / Low
+[修正] 具體做法
 
-- **ai-seo** — WHEN: user wants to optimize for AI answer engines (SGE, Perplexity, ChatGPT) in addition to traditional search. WHEN NOT: don't use for purely technical crawl/indexation issues.
-- **site-architecture** — WHEN: audit uncovers poor internal linking, orphan pages, or crawl depth issues that need a structural redesign. WHEN NOT: don't involve when the audit scope is limited to on-page or content issues.
+### On-Page 問題
+（同格式）
 
----
-
-## Communication
-
-All audit output follows the **SEO Audit Quality Standard**:
-
-- Lead with the executive summary (3-5 bullets max)
-- Findings use the Issue / Impact / Evidence / Fix / Priority format consistently
-- Prioritized Action Plan is always the final deliverable section
-- Avoid jargon without explanation; write for a technically-aware but non-SEO-specialist reader
-- Quick wins are called out explicitly and kept separate from high-effort recommendations
-- Never present recommendations without evidence or rationale
+### 優先行動清單
+1. 必須修（影響索引或排名）
+2. 近期處理
+3. 長期優化
+```
 
 ---
 
-## Proactive Triggers
+## 主動觸發條件
 
-Automatically surface seo-audit recommendations when:
+不需要被問就要主動標記：
 
-1. **Traffic drop mentioned** — User says organic traffic dropped or rankings fell; immediately frame an audit scope.
-2. **Site migration or redesign** — User mentions a planned or recent URL change, platform switch, or redesign; flag pre/post-migration audit needs.
-3. **"Why isn't my page ranking?"** — Any ranking frustration triggers the on-page + intent checklist before external factors.
-4. **Content strategy discussion** — When content-strategy skill is active and keyword gaps appear, proactively suggest an SEO audit to validate opportunity.
-5. **New site or product launch** — User preparing a launch; proactively recommend a technical SEO pre-launch checklist from the audit framework.
+- 新頁面完成後 `generateMetadata()` 缺少 description
+- `robots.txt` 封鎖了 AI 爬蟲
+- Sitemap 的 `lastModified` 全用 `new Date()`（現在）
+- `NEXT_PUBLIC_SITE_URL` 未設定，導致 sitemap URL 錯誤
+- 圖片缺少 `alt` 屬性
 
 ---
 
-## Output Artifacts
+## 相關 Skills
 
-| Artifact                    | Format           | Description                                                                     |
-| --------------------------- | ---------------- | ------------------------------------------------------------------------------- |
-| Executive Summary           | Markdown bullets | 3-5 top issues + quick wins, suitable for sharing with stakeholders             |
-| Technical SEO Findings      | Structured table | Issue / Impact / Evidence / Fix / Priority per finding                          |
-| On-Page SEO Findings        | Structured table | Same format, focused on content and metadata                                    |
-| Prioritized Action Plan     | Numbered list    | Ordered by impact × effort, grouped into Critical / High / Quick Wins           |
-| Keyword Cannibalization Map | Table            | Pages competing for same keyword with recommended canonical or redirect actions |
+- **ai-seo** — 傳統 SEO 之外，想讓文章被 ChatGPT / Perplexity 引用時使用

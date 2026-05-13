@@ -1,165 +1,105 @@
 ---
 name: "changelog-generator"
-description: "Changelog Generator"
+description: "從 git commit 生成 changelog 或 release notes。使用時機：想知道這段時間改了什麼、要寫 release notes、整理 commit 紀錄。這個專案用 Conventional Commits（feat/fix/refactor/chore 等），輸出英文。"
 ---
 
 # Changelog Generator
 
-**Tier:** POWERFUL  
-**Category:** Engineering  
-**Domain:** Release Management / Documentation
+從 git commit history 生成可讀的 changelog。這個專案用 Conventional Commits，輸出英文。
 
-## Overview
+## Conventional Commits 規則
 
-Use this skill to produce consistent, auditable release notes from Conventional Commits. It separates commit parsing, semantic bump logic, and changelog rendering so teams can automate releases without losing editorial control.
+支援的 type：
 
-## Core Capabilities
+| Type | 用途 | Changelog 分類 |
+|------|------|---------------|
+| `feat` | 新功能 | Added |
+| `fix` | 修 bug | Fixed |
+| `refactor` | 重構（不改行為） | Changed |
+| `perf` | 效能改善 | Changed |
+| `style` | 樣式調整 | Changed |
+| `docs` | 文件 | — （通常省略） |
+| `test` | 測試 | — （通常省略） |
+| `chore` | 雜項（依賴更新等） | — （通常省略） |
+| `ci` | CI/CD 設定 | — （通常省略） |
 
-- Parse commit messages using Conventional Commit rules
-- Detect semantic bump (`major`, `minor`, `patch`) from commit stream
-- Render Keep a Changelog sections (`Added`, `Changed`, `Fixed`, etc.)
-- Generate release entries from git ranges or provided commit input
-- Enforce commit format with a dedicated linter script
-- Support CI integration via machine-readable JSON output
+Breaking change：在 type 後加 `!`，例如 `feat!: change API`
 
-## When to Use
+---
 
-- Before publishing a release tag
-- During CI to generate release notes automatically
-- During PR checks to block invalid commit message formats
-- In monorepos where package changelogs require scoped filtering
-- When converting raw git history into user-facing notes
+## 執行步驟
 
-## Key Workflows
+觸發後：
 
-### 1. Generate Changelog Entry From Git
+1. 確認要產生的範圍（上次 release 到現在？還是特定日期區間？）
+2. 執行 git log 取得 commits
+3. 過濾並分類
+4. 輸出 changelog
 
-```bash
-python3 scripts/generate_changelog.py \
-  --from-tag v1.3.0 \
-  --to-tag v1.4.0 \
-  --next-version v1.4.0 \
-  --format markdown
-```
-
-### 2. Generate Entry From stdin/File Input
+### 常用 git 指令
 
 ```bash
-git log v1.3.0..v1.4.0 --pretty=format:'%s' | \
-  python3 scripts/generate_changelog.py --next-version v1.4.0 --format markdown
+# 從上次 tag 到現在
+git log v1.0.0..HEAD --pretty=format:"%s" --no-merges
 
-python3 scripts/generate_changelog.py --input commits.txt --next-version v1.4.0 --format json
+# 最近 N 個 commits
+git log -20 --pretty=format:"%s" --no-merges
+
+# 特定日期之後
+git log --after="2026-01-01" --pretty=format:"%s" --no-merges
+
+# 帶日期的完整格式
+git log --pretty=format:"%ad %s" --date=short --no-merges
 ```
 
-### 3. Update `CHANGELOG.md`
+---
+
+## 輸出格式
+
+```markdown
+## [Unreleased] — 2026-05-13
+
+### Added
+- feat: add Draft Mode API routes for Sanity preview
+- feat: extract shared components (AboutSection, FactRow, NavItem)
+
+### Fixed
+- fix: sitemap uses publishedAt as lastModified instead of current time
+
+### Changed
+- refactor: NavItem changed from <button> to <a> anchor with href
+- chore: migrate Studio to zzuhann.sanity.studio
+
+---
+```
+
+**規則：**
+- `docs`、`test`、`chore`、`ci` 預設不列入（太細節，讀者不在意）
+- 每條 changelog 從使用者角度描述，不是實作細節
+- Breaking change 用 ⚠️ 標示
+
+---
+
+## 個人部落格的版本策略
+
+不需要嚴格的 SemVer。建議用日期作為版本識別：
+
+```markdown
+## 2026-05 Release
+
+## 2026-04 Release
+```
+
+或者不加版本，只有 `[Unreleased]` 的滾動式 changelog。
+
+---
+
+## 執行範例
+
+當使用者說「幫我生成 changelog」，執行：
 
 ```bash
-python3 scripts/generate_changelog.py \
-  --from-tag v1.3.0 \
-  --to-tag HEAD \
-  --next-version v1.4.0 \
-  --write CHANGELOG.md
+git log --pretty=format:"%s" --no-merges -30
 ```
 
-### 4. Lint Commits Before Merge
-
-```bash
-python3 scripts/commit_linter.py --from-ref origin/main --to-ref HEAD --strict --format text
-```
-
-Or file/stdin:
-
-```bash
-python3 scripts/commit_linter.py --input commits.txt --strict
-cat commits.txt | python3 scripts/commit_linter.py --format json
-```
-
-## Conventional Commit Rules
-
-Supported types:
-
-- `feat`, `fix`, `perf`, `refactor`, `docs`, `test`, `build`, `ci`, `chore`
-- `security`, `deprecated`, `remove`
-
-Breaking changes:
-
-- `type(scope)!: summary`
-- Footer/body includes `BREAKING CHANGE:`
-
-SemVer mapping:
-
-- breaking -> `major`
-- non-breaking `feat` -> `minor`
-- all others -> `patch`
-
-## Script Interfaces
-
-- `python3 scripts/generate_changelog.py --help`
-  - Reads commits from git or stdin/`--input`
-  - Renders markdown or JSON
-  - Optional in-place changelog prepend
-- `python3 scripts/commit_linter.py --help`
-  - Validates commit format
-  - Returns non-zero in `--strict` mode on violations
-
-## Common Pitfalls
-
-1. Mixing merge commit messages with release commit parsing
-2. Using vague commit summaries that cannot become release notes
-3. Failing to include migration guidance for breaking changes
-4. Treating docs/chore changes as user-facing features
-5. Overwriting historical changelog sections instead of prepending
-
-## Best Practices
-
-1. Keep commits small and intent-driven.
-2. Scope commit messages (`feat(api): ...`) in multi-package repos.
-3. Enforce linter checks in PR pipelines.
-4. Review generated markdown before publishing.
-5. Tag releases only after changelog generation succeeds.
-6. Keep an `[Unreleased]` section for manual curation when needed.
-
-## References
-
-- [references/ci-integration.md](references/ci-integration.md)
-- [references/changelog-formatting-guide.md](references/changelog-formatting-guide.md)
-- [references/monorepo-strategy.md](references/monorepo-strategy.md)
-- [README.md](README.md)
-
-## Release Governance
-
-Use this release flow for predictability:
-
-1. Lint commit history for target release range.
-2. Generate changelog draft from commits.
-3. Manually adjust wording for customer clarity.
-4. Validate semver bump recommendation.
-5. Tag release only after changelog is approved.
-
-## Output Quality Checks
-
-- Each bullet is user-meaningful, not implementation noise.
-- Breaking changes include migration action.
-- Security fixes are isolated in `Security` section.
-- Sections with no entries are omitted.
-- Duplicate bullets across sections are removed.
-
-## CI Policy
-
-- Run `commit_linter.py --strict` on all PRs.
-- Block merge on invalid conventional commits.
-- Auto-generate draft release notes on tag push.
-- Require human approval before writing into `CHANGELOG.md` on main branch.
-
-## Monorepo Guidance
-
-- Prefer commit scopes aligned to package names.
-- Filter commit stream by scope for package-specific releases.
-- Keep infra-wide changes in root changelog.
-- Store package changelogs near package roots for ownership clarity.
-
-## Failure Handling
-
-- If no valid conventional commits found: fail early, do not generate misleading empty notes.
-- If git range invalid: surface explicit range in error output.
-- If write target missing: create safe changelog header scaffolding.
+然後過濾 `feat`、`fix`、`refactor`、`perf`、`style` 開頭的 commits，分類輸出。省略 `chore`、`docs`、`test`、`ci`。

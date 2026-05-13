@@ -1,191 +1,136 @@
 ---
 name: web-quality-audit
-description: Comprehensive web quality audit covering performance, accessibility, SEO, and best practices. Use when asked to "audit my site", "review web quality", "run lighthouse audit", "check page quality", or "optimize my website".
+description: 全站品質稽核：效能、可及性、SEO、最佳實踐。使用時機：「部署前做一次全面檢查」、「audit 我的網站」、「Lighthouse 稽核」、「網站品質有沒有問題」。
 license: MIT
 metadata:
-  author: web-quality-skills
-  version: '1.0'
+  version: 2.0.0
+  updated: 2026-05-13
 ---
 
-# Web quality audit
+# Web Quality Audit
 
-Comprehensive quality review based on Google Lighthouse audits. Covers Performance, Accessibility, SEO, and Best Practices across 150+ checks.
+全站品質審查。基於 Google Lighthouse 四大維度，對這個專案的 tech stack 做針對性檢查。
 
-## How it works
+## Platform Context
 
-1. Analyze the provided code/project for quality issues
-2. Categorize findings by severity (Critical, High, Medium, Low)
-3. Provide specific, actionable recommendations
-4. Include code examples for fixes
+- 平台：之翰の備忘錄（個人技術部落格）
+- Tech stack：Next.js 16 App Router、Sanity CMS、Tailwind CSS 4、Vercel
+- 部署：Vercel（自動靜態生成 + Serverless Functions）
+- 字型：Noto Serif TC、Noto Sans TC、EB Garamond、JetBrains Mono（Google Fonts）
 
-## Audit categories
+---
 
-### Performance (40% of typical issues)
+## 稽核維度
 
-**Core Web Vitals** — Must pass for good page experience:
+### 1. 效能 Performance
 
-- **LCP (Largest Contentful Paint) < 2.5s.** The largest visible element must render quickly. Optimize images, fonts, and server response time.
-- **INP (Interaction to Next Paint) < 200ms.** User interactions must feel instant. Reduce JavaScript execution time and break up long tasks.
-- **CLS (Cumulative Layout Shift) < 0.1.** Content must not jump around. Set explicit dimensions on images, embeds, and ads.
+**Core Web Vitals（必須通過）**
 
-**Resource Optimization:**
+| 指標 | 目標 | 常見原因 |
+|------|------|--------|
+| LCP < 2.5s | 最大內容繪製 | 字型載入阻塞、圖片未最佳化 |
+| CLS < 0.1 | 版面位移 | 字型 FOUT、圖片無固定尺寸 |
+| INP < 200ms | 互動延遲 | 過多 client JS、長任務 |
 
-- **Compress images.** Use WebP/AVIF with fallbacks. Serve correctly sized images via `srcset`.
-- **Minimize JavaScript.** Remove unused code. Use code splitting. Defer non-critical scripts.
-- **Optimize CSS.** Extract critical CSS. Remove unused styles. Avoid `@import`.
-- **Efficient fonts.** Use `font-display: swap`. Preload critical fonts. Subset to needed characters.
+**這個專案的常見效能問題：**
 
-**Loading Strategy:**
+- Google Fonts 有沒有用 `display=swap` 並 preload？（`app/layout.tsx`）
+- `next/image` 有沒有設定 `width`/`height` 或 `fill` 避免 CLS？
+- Sanity 圖片有沒有透過 `@sanity/image-url` 最佳化尺寸？
+- 字型是否限制 `subset`（只載入需要的字元範圍）？
 
-- **Preconnect to origins.** Add `<link rel="preconnect">` for third-party domains.
-- **Preload critical assets.** LCP images, fonts, and above-fold CSS.
-- **Lazy load below-fold content.** Images, iframes, and heavy components.
-- **Cache effectively.** Long cache TTLs for static assets. Immutable caching for hashed files.
+**Server Component 優勢確認：**
+- 確認沒有把不必要的東西加 `"use client"`（會增加 client bundle）
+- 目前 client component 只有 `MobileNav`，確認沒有新增
 
-### Accessibility (30% of typical issues)
+### 2. 可及性 Accessibility
 
-**Perceivable:**
+→ 詳細稽核請用 `/a11y-audit`（專門 skill）
 
-- **Text alternatives.** Every `<img>` has meaningful `alt` text. Decorative images use `alt=""`.
-- **Color contrast.** Minimum 4.5:1 for normal text, 3:1 for large text (WCAG AA).
-- **Don't rely on color alone.** Use icons, patterns, or text alongside color indicators.
-- **Captions and transcripts.** Video has captions. Audio has transcripts.
+快速確認：
 
-**Operable:**
+- [ ] `<html lang="zh-Hant">` 有設定
+- [ ] 每頁有 `<main id="main-content">`
+- [ ] Layout 有 skip-to-content 連結
+- [ ] 所有圖片有 `alt`
+- [ ] heading 層級不跳號（h1 → h2 → h3）
+- [ ] 互動元素有 focus 樣式
 
-- **Keyboard accessible.** All functionality available via keyboard. No keyboard traps.
-- **Focus visible.** Clear focus indicators on all interactive elements.
-- **Skip links.** Provide "Skip to main content" for keyboard users.
-- **Sufficient time.** Users can extend time limits. No auto-advancing content without controls.
+### 3. SEO
 
-**Understandable:**
+→ 詳細稽核請用 `/seo-audit`（專門 skill）
 
-- **Page language.** Set `lang` attribute on `<html>`.
-- **Consistent navigation.** Same navigation structure across pages.
-- **Error identification.** Form errors clearly described and associated with fields.
-- **Labels and instructions.** All form inputs have associated labels.
+快速確認：
 
-**Robust:**
+- [ ] 每頁 `generateMetadata()` 有 title + description
+- [ ] `/robots.txt` 允許主要爬蟲
+- [ ] `/sitemap.xml` 包含所有文章和專案
+- [ ] `NEXT_PUBLIC_SITE_URL` 已設定（sitemap base URL）
 
-- **Valid HTML.** No duplicate IDs. Properly nested elements.
-- **ARIA used correctly.** Prefer native elements. ARIA roles match behavior.
-- **Name, role, value.** Interactive elements have accessible names and correct roles.
+### 4. 最佳實踐 Best Practices
 
-### SEO (15% of typical issues)
+**安全性：**
+- Vercel 預設 HTTPS，不需要手動設定
+- `.env.local` 不應被 commit（已在 `.gitignore`）
+- API route（`/api/revalidate`）有 secret token 驗證
 
-**Crawlability:**
+**現代標準：**
+- `<meta charset="UTF-8">` 是否存在
+- 瀏覽器 console 有無錯誤
+- 無廢棄 API 使用
 
-- **Valid robots.txt.** Doesn't block important resources.
-- **XML sitemap.** Lists all important pages. Submitted to Search Console.
-- **Canonical URLs.** Prevent duplicate content issues.
-- **No noindex on important pages.** Check meta robots and headers.
+---
 
-**On-Page SEO:**
+## 嚴重程度
 
-- **Unique title tags.** 50-60 characters. Primary keyword included.
-- **Meta descriptions.** 150-160 characters. Compelling and unique.
-- **Heading hierarchy.** Single `<h1>`. Logical heading structure.
-- **Descriptive link text.** Not "click here" or "read more".
+| 層級 | 定義 | 處理時機 |
+|------|------|---------|
+| Critical | 功能失效、安全漏洞 | 立即修 |
+| High | Core Web Vitals 不過、主要 a11y 障礙 | 上線前修 |
+| Medium | 效能優化機會、SEO 改善 | 近期 sprint |
+| Low | 小型優化 | 有空再做 |
 
-**Technical SEO:**
+---
 
-- **Mobile-friendly.** Responsive design. Tap targets ≥ 48px.
-- **HTTPS.** Secure connection required.
-- **Fast loading.** Performance directly impacts ranking.
-- **Structured data.** JSON-LD for rich snippets (Article, Product, FAQ, etc.).
+## 輸出格式
 
-### Best practices (15% of typical issues)
+```
+## 品質稽核報告
 
-**Security:**
+### 摘要
+- 整體評估
+- 前 3 個優先問題
 
-- **HTTPS everywhere.** No mixed content. HSTS enabled.
-- **No vulnerable libraries.** Keep dependencies updated.
-- **CSP headers.** Content Security Policy to prevent XSS.
-- **No exposed source maps.** In production builds.
+### Critical（X 個）
+[問題] 描述 — 檔案：path/to/file.tsx
+[影響] 說明
+[修正] 具體做法
 
-**Modern Standards:**
+### High / Medium / Low
+（同格式）
 
-- **No deprecated APIs.** Replace `document.write`, synchronous XHR, etc.
-- **Valid doctype.** Use `<!DOCTYPE html>`.
-- **Charset declared.** `<meta charset="UTF-8">` as first element in `<head>`.
-- **No browser errors.** Clean console. No CORS issues.
-
-**UX Patterns:**
-
-- **No intrusive interstitials.** Especially on mobile.
-- **Clear permission requests.** Only ask when needed, with context.
-- **No misleading buttons.** Buttons do what they say.
-
-## Severity levels
-
-| Level        | Description                                   | Action              |
-| ------------ | --------------------------------------------- | ------------------- |
-| **Critical** | Security vulnerabilities, complete failures   | Fix immediately     |
-| **High**     | Core Web Vitals failures, major a11y barriers | Fix before launch   |
-| **Medium**   | Performance opportunities, SEO improvements   | Fix within sprint   |
-| **Low**      | Minor optimizations, code quality             | Fix when convenient |
-
-## Audit output format
-
-When performing an audit, structure findings as:
-
-```markdown
-## Audit results
-
-### Critical issues (X found)
-
-- **[Category]** Issue description. File: `path/to/file.js:123`
-  - **Impact:** Why this matters
-  - **Fix:** Specific code change or recommendation
-
-### High priority (X found)
-
-...
-
-### Summary
-
-- Performance: X issues (Y critical)
-- Accessibility: X issues (Y critical)
-- SEO: X issues
-- Best Practices: X issues
-
-### Recommended priority
-
-1. First fix this because...
-2. Then address...
-3. Finally optimize...
+### 優先行動清單
+1. 必須修（上線前）
+2. 近期處理
+3. 長期優化
 ```
 
-## Quick checklist
+---
 
-### Before every deploy
+## 部署前快速清單
 
-- [ ] Core Web Vitals passing
-- [ ] No accessibility errors (axe/Lighthouse)
-- [ ] No console errors
-- [ ] HTTPS working
-- [ ] Meta tags present
+- [ ] `pnpm type-check` 通過
+- [ ] `pnpm lint` 通過
+- [ ] `pnpm test` 通過
+- [ ] `pnpm build` 成功（沒有 build error）
+- [ ] Core Web Vitals 用 PageSpeed Insights 測試
+- [ ] 文章頁 meta tags 正確（用瀏覽器開發工具確認）
+- [ ] `/sitemap.xml` 包含最新文章
 
-### Weekly review
+---
 
-- [ ] Check Search Console for issues
-- [ ] Review Core Web Vitals trends
-- [ ] Update dependencies
-- [ ] Test with screen reader
+## 相關 Skills
 
-### Monthly deep dive
-
-- [ ] Full Lighthouse audit
-- [ ] Performance profiling
-- [ ] Accessibility audit with real users
-- [ ] SEO keyword review
-
-## References
-
-For detailed guidelines on specific areas:
-
-- [Performance Optimization](../performance/SKILL.md)
-- [Core Web Vitals](../core-web-vitals/SKILL.md)
-- [Accessibility](../accessibility/SKILL.md)
-- [SEO](../seo/SKILL.md)
-- [Best Practices](../best-practices/SKILL.md)
+- **a11y-audit** — 深度可及性稽核（WCAG 2.2）
+- **seo-audit** — 深度 SEO 稽核
+- **ai-seo** — AI 搜尋引擎引用優化
