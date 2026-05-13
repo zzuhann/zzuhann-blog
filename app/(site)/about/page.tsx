@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { urlForImage } from '@/lib/sanity/image'
 import PortableTextRenderer from '@/components/blog/PortableTextRenderer'
 import type { PortableTextBlock } from '@portabletext/react'
+import AboutSection from '@/components/about/AboutSection'
 
 export const metadata: Metadata = {
   title: '關於',
@@ -196,19 +197,3 @@ export default async function AboutPage() {
   )
 }
 
-function AboutSection({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <section
-      className="mt-14"
-      style={{ paddingTop: '28px', borderTop: '1px solid var(--border)' }}
-    >
-      <h2
-        className="font-mono text-ink-soft uppercase mb-5"
-        style={{ fontSize: '11px', letterSpacing: '.2em', fontWeight: 400 }}
-      >
-        {label}
-      </h2>
-      {children}
-    </section>
-  )
-}

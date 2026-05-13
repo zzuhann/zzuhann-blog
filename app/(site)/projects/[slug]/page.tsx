@@ -6,6 +6,8 @@ import { PROJECT_BY_SLUG_QUERY, PROJECT_SLUGS_QUERY } from '@/lib/sanity/queries
 import type { Project } from '@/lib/sanity/types'
 import { formatDate } from '@/lib/utils'
 import PortableTextRenderer from '@/components/blog/PortableTextRenderer'
+import FactRow from '@/components/projects/FactRow'
+import NavItem from '@/components/projects/NavItem'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -122,20 +124,20 @@ export default async function ProjectPage({ params }: Props) {
         {/* Body */}
         <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-14">
           <nav className="hidden md:flex flex-col gap-1" style={{ position: 'sticky', top: '88px', alignSelf: 'start' }}>
-            <NavItem label="概述" active />
-            <NavItem label="技術筆記" />
-            <NavItem label="開發日誌" />
-            {(project.relatedPosts?.length ?? 0) > 0 && <NavItem label="相關文章" />}
+            <NavItem href="#overview" label="概述" active />
+            <NavItem href="#notes" label="技術筆記" />
+            <NavItem href="#journal" label="開發日誌" />
+            {(project.relatedPosts?.length ?? 0) > 0 && <NavItem href="#related" label="相關文章" />}
           </nav>
 
           <div>
             <div className="prose">
-              <h2><span className="num">§ 01</span>概述</h2>
+              <h2 id="overview"><span className="num">§ 01</span>概述</h2>
               <p>{project.overview}</p>
 
               {project.notes && project.notes.length > 0 && (
                 <>
-                  <h2><span className="num">§ 02</span>技術筆記</h2>
+                  <h2 id="notes"><span className="num">§ 02</span>技術筆記</h2>
                   <ul>
                     {project.notes.map((note, i) => <li key={i}>{note}</li>)}
                   </ul>
@@ -144,7 +146,7 @@ export default async function ProjectPage({ params }: Props) {
 
               {project.body && (
                 <>
-                  <h2><span className="num">§ 03</span>開發日誌</h2>
+                  <h2 id="journal"><span className="num">§ 03</span>開發日誌</h2>
                   <PortableTextRenderer value={project.body} />
                 </>
               )}
@@ -152,6 +154,7 @@ export default async function ProjectPage({ params }: Props) {
 
             {project.relatedPosts && project.relatedPosts.length > 0 && (
               <section
+                id="related"
                 className="mt-[88px] pt-9"
                 style={{ borderTop: '1px solid var(--rule)' }}
               >
@@ -192,40 +195,3 @@ export default async function ProjectPage({ params }: Props) {
   )
 }
 
-function FactRow({ label, value }: { label: string; value: React.ReactNode }) {
-  return (
-    <div
-      className="grid gap-6 py-3 border-b"
-      style={{
-        gridTemplateColumns: '100px 1fr',
-        borderStyle: 'dashed',
-        borderColor: 'var(--border)',
-        fontSize: '13.5px',
-        alignItems: 'baseline',
-      }}
-    >
-      <span
-        className="font-mono text-ink-soft uppercase"
-        style={{ fontSize: '10.5px', letterSpacing: '.16em' }}
-      >
-        {label}
-      </span>
-      <span className="text-ink">{value}</span>
-    </div>
-  )
-}
-
-function NavItem({ label, active }: { label: string; active?: boolean }) {
-  return (
-    <button
-      className="font-mono uppercase text-left border-t border-border py-2 transition-colors"
-      style={{
-        fontSize: '11px',
-        letterSpacing: '.14em',
-        color: active ? 'var(--text)' : 'var(--text-soft)',
-      }}
-    >
-      {active && '→ '}{label}
-    </button>
-  )
-}
