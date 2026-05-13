@@ -17,6 +17,7 @@
   --color-ink:          #1F1F1F; /* BODY TEXT   contrast 14.2 */
   --color-ink-muted:    #6B6B6B; /* SECONDARY   contrast 5.6  */
   --color-ink-soft:     #9A9A9A; /* META/CAPTION contrast 3.1 */
+  --color-body:         #4A4A4A; /* UI BODY TEXT contrast 7.2  */
 
   /* § Accent — 唯一彩色 */
   --color-accent:       #4A6FA5; /* LINKS · ITALICS · DROPCAP */

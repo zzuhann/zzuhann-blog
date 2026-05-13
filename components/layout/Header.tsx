@@ -26,13 +26,7 @@ export default function Header() {
             className="font-serif font-medium"
             style={{ fontSize: '19px', letterSpacing: '.02em', fontFeatureSettings: '"palt"', color: 'var(--text-body)' }}
           >
-            之翰の備忘錄
-          </span>
-          <span
-            className="font-mono text-ink-soft uppercase hidden sm:block"
-            style={{ fontSize: '11px', letterSpacing: '.14em' }}
-          >
-            Editorial · est. 2019
+            zzuhann&apos;s space
           </span>
         </Link>
 

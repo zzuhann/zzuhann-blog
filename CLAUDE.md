@@ -40,28 +40,22 @@ my-blog/
 │   ├── layout/                   # 全站 UI 骨架
 │   │   ├── Header.tsx
 │   │   ├── Footer.tsx
-│   │   ├── ThemeToggle.tsx
 │   │   └── MobileNav.tsx
 │   ├── home/                     # 首頁區塊
 │   │   ├── HeroSection.tsx
 │   │   ├── FeaturedPosts.tsx
-│   │   └── FeaturedProjects.tsx
+│   │   ├── FeaturedProjects.tsx
+│   │   └── AboutPreview.tsx
 │   ├── blog/                     # 文章相關
-│   │   ├── PostCard.tsx
-│   │   ├── PostList.tsx
-│   │   ├── PostHeader.tsx
-│   │   ├── PortableTextRenderer.tsx
-│   │   └── TableOfContents.tsx
+│   │   └── PortableTextRenderer.tsx
 │   ├── projects/                 # 作品集相關
-│   │   ├── ProjectCard.tsx
-│   │   └── ProjectGrid.tsx
-│   ├── about/                    # 關於我
-│   │   └── AboutContent.tsx
+│   │   └── ProjectCard.tsx
+│   ├── about/                    # 關於我（AboutSection 保留備用）
+│   │   └── AboutSection.tsx
 │   └── ui/                       # 通用元件
-│       ├── Button.tsx
-│       ├── Tag.tsx
-│       ├── Image.tsx             # 封裝 next/image + sanity image url
-│       └── AnimatedSection.tsx   # Framer Motion 包裝器
+│       ├── SectionHead.tsx       # 首頁 section 標題（帶 chapter number）
+│       ├── PageHead.tsx          # 列表頁標題（kicker + h1 + lede）
+│       └── Tag.tsx
 │
 ├── lib/
 │   ├── sanity/
@@ -119,13 +113,10 @@ my-blog/
 Server Component（預設）：
   - 頁面層級（page.tsx）
   - 資料獲取（GROQ query 在這層執行）
-  - 靜態 UI（PostCard, ProjectCard 等）
+  - 靜態 UI（ProjectCard 等）
 
 Client Component（加 "use client"）：
-  - ThemeToggle（需要 state）
   - MobileNav（需要 state）
-  - AnimatedSection（Framer Motion 需要 client）
-  - TableOfContents（需要 scroll listener）
 ```
 
 ### Props 設計規範
@@ -254,14 +245,12 @@ Sanity 發布文章
 ✅ 要測試的：
   - lib/utils.ts 的工具函式（純函式，最容易寫）
   - GROQ query 回傳資料的型別轉換邏輯
-  - PostCard, ProjectCard 的 render 正確性
-  - Dark mode toggle 狀態切換
+  - ProjectCard 的 render 正確性
 
 ✅ E2E 要涵蓋的流程：
   - 首頁正常載入，顯示文章列表
   - 點擊文章 → 進入詳頁 → 標題正確
   - /about, /projects 頁面正常載入
-  - Dark mode 切換後，reload 仍保持狀態
 
 ❌ 不用測試的：
   - Sanity Studio UI（第三方，不用測）
@@ -317,26 +306,18 @@ jobs:
 
 ---
 
-## 七、Dark Mode 設計
+## 七、色彩使用原則
 
-使用 **`next-themes`**，最省力且與 App Router 相容：
+無 dark mode。色彩階層由四個語意 token 組成：
 
-```tsx
-// app/(site)/layout.tsx
-import { ThemeProvider } from 'next-themes'
+| Token | Hex | 用途 |
+|-------|-----|------|
+| `--text` | `#1F1F1F` | 標題、強調（最高層級） |
+| `--text-body` | `#4A4A4A` | UI 內文、段落、導覽文字（比純黑柔和） |
+| `--text-muted` | `#6B6B6B` | 摘要、副標、次要說明 |
+| `--text-soft` | `#9A9A9A` | 日期、編號、元資料（僅大字級） |
 
-export default function SiteLayout({ children }) {
-  return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
-    </ThemeProvider>
-  )
-}
-```
-
-Tailwind 設定 `darkMode: 'class'`，用 `dark:` prefix 處理所有 dark 樣式。
-
-系統偏好自動偵測，手動切換後儲存在 localStorage，**不需要後端**。
+Tailwind class：`text-ink`、`text-body`、`text-ink-muted`、`text-ink-soft`。
 
 ---
 
@@ -367,7 +348,7 @@ SANITY_REVALIDATE_SECRET=
 | Revalidation | On-demand webhook | 發布即生效，不浪費 API quota |
 | 型別來源 | Sanity typegen | 單一來源，schema 改動自動同步 |
 | 測試 | Vitest + Playwright（不含 Storybook） | 個人專案 CP 值最高組合 |
-| Dark mode | next-themes + Tailwind class | 最少設定，完整功能 |
+| Dark mode | 無 | 編輯式期刊定位，單一主題即可 |
 | CI | lint + typecheck + test + E2E | 生產等級，Vercel preview 自動處理 |
 
 ## 十、使用繁體中文

@@ -92,7 +92,8 @@ pnpm dev
 | `--bg` | `#F7F3EE` | 頁面底色（紙白） |
 | `--bg-soft` | `#F1ECE4` | 替換式區塊（米白） |
 | `--surface` | `#FFFFFF` | 卡片、浮起層 |
-| `--text` | `#1F1F1F` | 主文字（墨黑） |
+| `--text` | `#1F1F1F` | 標題、強調（墨黑） |
+| `--text-body` | `#4A4A4A` | UI 內文、段落文字（書灰）|
 | `--text-muted` | `#6B6B6B` | 次要文字 |
 | `--text-soft` | `#9A9A9A` | 元資料（日期、編號） |
 | `--accent` | `#4A6FA5` | 連結、強調（青藍） |
