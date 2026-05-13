@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [postSlugs, projectSlugs] = await Promise.all([
-    getClient().fetch<{ slug: string }[]>(POST_SLUGS_QUERY),
+    getClient().fetch<{ slug: string; publishedAt: string }[]>(POST_SLUGS_QUERY),
     getClient().fetch<{ slug: string }[]>(PROJECT_SLUGS_QUERY),
   ])
 
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postPages: MetadataRoute.Sitemap = postSlugs.map(s => ({
     url: `${SITE_URL}/blog/${s.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(s.publishedAt),
     changeFrequency: 'monthly',
     priority: 0.8,
   }))

@@ -43,7 +43,7 @@ export const POST_BY_SLUG_QUERY = `
 `
 
 export const POST_SLUGS_QUERY = `
-  *[_type == "post" && !(_id in path("drafts.**"))] { "slug": slug.current }
+  *[_type == "post" && !(_id in path("drafts.**"))] { "slug": slug.current, publishedAt }
 `
 
 export const ALL_PROJECTS_QUERY = `
