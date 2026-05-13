@@ -8,6 +8,7 @@ import ProjectCard from '@/components/projects/ProjectCard'
 export const metadata: Metadata = {
   title: '專案',
   description: '一些碎片、一些專案、一些想做的事，綜合起來成了作品集、拼湊成我自己的樣子。',
+  alternates: { canonical: '/projects' },
 }
 
 export default async function ProjectsPage() {

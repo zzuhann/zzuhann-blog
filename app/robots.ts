@@ -6,6 +6,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: '*', allow: '/', disallow: '/studio/' },
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
   }

@@ -9,6 +9,7 @@ import PageHead from '@/components/ui/PageHead'
 export const metadata: Metadata = {
   title: '文章',
   description: '寫一些自己的想法和一些關於前端開發的想法筆記。生活有很多種模樣，想讓各式各樣的樣子都能夠被記錄下來。',
+  alternates: { canonical: '/blog' },
 }
 
 export default async function BlogPage() {

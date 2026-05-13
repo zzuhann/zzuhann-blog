@@ -10,6 +10,7 @@ import type { PortableTextBlock } from '@portabletext/react'
 export const metadata: Metadata = {
   title: '關於我',
   description: '約三年半前端工程師經驗，擅長 React, Next.js, TypeScript, Styled-Components, PandaCSS, etc. 希望做的產品服務可以解決使用者痛點，也能產生一些正面的影響。',
+  alternates: { canonical: '/about' },
 }
 
 export default async function AboutPage() {
@@ -36,7 +37,7 @@ export default async function AboutPage() {
                 <div style={{ position: 'relative', aspectRatio: '4/5', maxHeight: '480px' }}>
                   <Image
                     src={urlForImage(about.portrait.asset).url()}
-                    alt="me-portrait"
+                    alt="zzuhann 個人照片"
                     fill
                     className="object-cover"
                     style={{ border: '1px solid var(--border)' }}
