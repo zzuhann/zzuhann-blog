@@ -23,8 +23,8 @@ export default function Header() {
       >
         <Link href="/" className="flex items-baseline gap-[14px] hover:no-underline">
           <span
-            className="font-serif font-medium text-ink"
-            style={{ fontSize: '19px', letterSpacing: '.02em', fontFeatureSettings: '"palt"' }}
+            className="font-serif font-medium"
+            style={{ fontSize: '19px', letterSpacing: '.02em', fontFeatureSettings: '"palt"', color: 'var(--text-body)' }}
           >
             之翰の備忘錄
           </span>
@@ -54,7 +54,7 @@ function NavItem({ href, num, label }: { href: string; num: string; label: strin
   return (
     <Link
       href={href}
-      className="relative text-ink-muted hover:text-ink transition-colors"
+      className="relative text-ink-muted hover:text-ink-70 transition-colors"
       style={{ fontSize: '13.5px', letterSpacing: '.04em', padding: '4px 0' }}
     >
       <span

@@ -17,16 +17,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">
           <div>
             <p
-              className="font-serif text-ink mb-2.5"
-              style={{ fontSize: '22px' }}
+              className="font-serif mb-2.5"
+              style={{ fontSize: '22px', color: 'var(--text-body)' }}
             >
-              之翰の備忘錄
-            </p>
-            <p
-              className="text-ink-muted leading-relaxed"
-              style={{ fontSize: '13px', maxWidth: '28ch' }}
-            >
-              一份關於介面、程式碼與閱讀的個人技術期刊。每月一至兩篇，不定期更新。
+              zzuhann&apos;s space
             </p>
           </div>
 
@@ -38,12 +32,6 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-          </FooterCol>
-
-          <FooterCol title="訂閱">
-            <li><Link href="/api/rss" className="text-ink-muted hover:text-accent transition-colors">RSS Feed</Link></li>
-            <li><span className="text-ink-muted">每月電子報</span></li>
-            <li><span className="text-ink-muted">Atom</span></li>
           </FooterCol>
 
           <FooterCol title="聯絡">
